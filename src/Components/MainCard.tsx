@@ -24,6 +24,7 @@ function MainCard({ index, mainCard, todoList }: Props): ReactElement {
       setDisplay("none");
     }
   };
+
   return (
     <div>
       <li>

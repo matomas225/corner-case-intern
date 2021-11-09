@@ -1,9 +1,9 @@
 import MainCard from "./Components/MainCard";
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { ITodoItem } from "./Interfaces";
-
 function App(): ReactElement {
-  const todoList: ITodoItem[] = [
+  //States
+  const [todoList, setTodoList] = useState<ITodoItem[]>([
     {
       number: 1,
       name: "Build test task",
@@ -31,7 +31,17 @@ function App(): ReactElement {
       name: "Receive answers",
       sideCards: ["Receive anwsers", "Start your IT career"],
     },
-  ];
+  ]);
+
+  //Local Storage
+  useEffect(() => {
+    if (localStorage.getItem("todoList") === null) {
+      localStorage.setItem("todoList", JSON.stringify(todoList));
+    } else {
+      setTodoList(JSON.parse(localStorage.getItem("todoList") || "[]"));
+    }
+  }, []);
+
   return (
     <div className="App">
       <h1>CCT Lab Process</h1>

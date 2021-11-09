@@ -1,4 +1,5 @@
 import { ReactElement, useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 interface Props {
   display: string;
@@ -7,6 +8,11 @@ interface Props {
 function SideCard({ display, sideCardName }: Props): ReactElement {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [imgSrc, setImgSrc] = useState<string>("");
+
+  const variants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
 
   useEffect(() => {
     if (isChecked) {
