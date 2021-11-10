@@ -34,7 +34,8 @@ function App(): ReactElement {
           isChecked: false,
         },
         {
-          name: "Sent link with information to careers@cornercasetech.com",
+          name: "Sent link with information to",
+          link: "careers@cornercasetech.com",
           isChecked: false,
         },
       ],
