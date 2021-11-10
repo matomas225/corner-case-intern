@@ -1,7 +1,6 @@
 import { ReactElement, useState } from "react";
 import SideCard from "./SideCard";
 import { ITodoItem } from "../Interfaces";
-//Welcome to main card
 
 //setting main card prop types
 interface Props {
@@ -10,13 +9,7 @@ interface Props {
   todoList: ITodoItem[];
   setTodoList: React.Dispatch<React.SetStateAction<ITodoItem[]>>;
 }
-//Using props with Props interface
-function MainCard({
-  mainCardIndex,
-  mainCard,
-  todoList,
-  setTodoList,
-}: Props): ReactElement {
+function MainCard({ mainCardIndex, mainCard, todoList, setTodoList }: Props): ReactElement {
   //States
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [border, setBorder] = useState<string>("200px");
@@ -38,12 +31,7 @@ function MainCard({
   return (
     <div>
       <li>
-        <div
-          className="main-card"
-          style={{ margin: "0px 0px 0px 0px" }}
-          onClick={clickHandle}
-        >
-          {/* Displaying mainCard information */}
+        <div className="main-card" style={{ margin: "0px 0px 0px 0px" }} onClick={clickHandle}>
           <h1>{mainCard.number}</h1>
           <p>{mainCard.name}</p>
           {/* using border state as width */}
@@ -51,10 +39,8 @@ function MainCard({
         </div>
         {/* maping todo list to get sideCards from mainCard */}
         {todoList[mainCardIndex].sideCards.map(
-          // setting types for sideCard data and getting sideCard index
-          (sideCard: { name: string; isChecked: boolean }, index: number) => {
+          (sideCard: { name: string; isChecked: boolean; link?: string }, index: number) => {
             return (
-              // passing props to SideCard
               <SideCard
                 display={display}
                 sideCard={sideCard}
