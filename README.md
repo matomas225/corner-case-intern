@@ -1,8 +1,8 @@
-# Corner Case Intern.
+# Corner Case Intern
 
-I really enjoyed this project, so I took some time to do it right, I hope you like it.
+I really Enjoyed this project, so i took some time to do it right, i hope you like it <3.
 
-## To Run the project run these commands in root directory:
+## To Run the project
 
-1. npm install
-2. npm run start
+1. npm install (to install all modules)
+2. npm run start (to start the project)

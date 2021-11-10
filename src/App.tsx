@@ -1,6 +1,7 @@
 import MainCard from "./Components/MainCard";
 import { ReactElement, useEffect, useState } from "react";
 import { ITodoItem } from "./Interfaces";
+//Welcome to App
 function App(): ReactElement {
   //States
   const [todoList, setTodoList] = useState<ITodoItem[]>([
@@ -33,8 +34,7 @@ function App(): ReactElement {
           isChecked: false,
         },
         {
-          name: "Sent link with information to ",
-          link: "careers@cornercasetech.com",
+          name: "Sent link with information to careers@cornercasetech.com",
           isChecked: false,
         },
       ],
@@ -81,8 +81,10 @@ function App(): ReactElement {
     <div className="App">
       <h1>CCT Lab Process</h1>
       <ul>
+        {/* maping todo list */}
         {todoList.map((mainCard: ITodoItem, index: number) => {
           return (
+            // passing props to main card
             <MainCard
               mainCardIndex={index}
               mainCard={mainCard}
