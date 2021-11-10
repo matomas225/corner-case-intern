@@ -1,7 +1,6 @@
 import MainCard from "./Components/MainCard";
 import { ReactElement, useEffect, useState } from "react";
 import { ITodoItem } from "./Interfaces";
-//Welcome to App
 function App(): ReactElement {
   //States
   const [todoList, setTodoList] = useState<ITodoItem[]>([
@@ -67,7 +66,6 @@ function App(): ReactElement {
     },
   ]);
 
-  //Local Storage
   useEffect(() => {
     //if local storage is empty set local storage to todoList
     if (localStorage.getItem("todoList") === null) {
@@ -85,7 +83,6 @@ function App(): ReactElement {
         {/* maping todo list */}
         {todoList.map((mainCard: ITodoItem, index: number) => {
           return (
-            // passing props to main card
             <MainCard
               mainCardIndex={index}
               mainCard={mainCard}

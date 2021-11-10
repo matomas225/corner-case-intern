@@ -12,7 +12,6 @@ interface Props {
   sideCardIndex: number;
   mainCardIndex: number;
 }
-//using props with Props interface
 function SideCard({ display, sideCard, setTodoList, todoList, sideCardIndex, mainCardIndex }: Props): ReactElement {
   //states
   const [imgSrc, setImgSrc] = useState<string>("");
@@ -48,7 +47,6 @@ function SideCard({ display, sideCard, setTodoList, todoList, sideCardIndex, mai
     }
   };
   return (
-    // using style state as a style for side card
     <div style={style}>
       <div className="side-card" style={style}>
         <img src={imgSrc} alt="check-box" onClick={checkHandle} />
@@ -64,7 +62,6 @@ function SideCard({ display, sideCard, setTodoList, todoList, sideCardIndex, mai
             ""
           )}
         </p>
-        {/* <h1>{sideCard.link ? sideCard.link : "no link"}</h1> */}
       </div>
     </div>
   );
