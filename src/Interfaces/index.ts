@@ -1,10 +1,8 @@
 export interface ISideCard {
   name: string;
-  isChecked: boolean;
-  link?: string;
 }
 export interface ITodoItem {
-  number: number;
+  id: number;
   name: string;
   sideCards: Array<ISideCard>;
 }

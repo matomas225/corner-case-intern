@@ -1,80 +1,63 @@
 import MainCard from "./Components/MainCard";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useState } from "react";
 import { ITodoItem } from "./Interfaces";
+import { ISideCard } from "./Interfaces";
 function App(): ReactElement {
   //States
-  const [todoList, setTodoList] = useState<ITodoItem[]>([
+  const [mainIsClicked, setMainIsClicked] = useState<number | null>(null);
+  const todoList: ITodoItem[] = [
     //store object in todoList state
     {
-      number: 1,
+      id: 1,
       name: "Build test task",
       sideCards: [
         {
           name: "Create repository",
           //this will change depending if checkbox is clicked or not
-          isChecked: false,
         },
         {
           name: "Implement designs",
-          isChecked: false,
         },
         {
           name: "Implement functionality",
-          isChecked: false,
         },
       ],
     },
     {
-      number: 2,
+      id: 2,
       name: "Submit your test task",
       sideCards: [
         {
           name: "Open email client",
-          isChecked: false,
         },
         {
-          name: "Sent link with information to",
-          link: "careers@cornercasetech.com",
-          isChecked: false,
+          name: "Sent link with careers@cornercasetech.com information to",
         },
       ],
     },
     {
-      number: 3,
+      id: 3,
       name: "Participate in tech interview",
       sideCards: [
         {
           name: "Talk with HR",
-          isChecked: false,
         },
         {
           name: "Talk with Tech Team",
-          isChecked: false,
         },
       ],
     },
     {
-      number: 4,
+      id: 4,
       name: "Receive answers",
       sideCards: [
-        { name: "Receive anwsers", isChecked: false },
+        { name: "Receive anwsers" },
         {
           name: "Start your IT career",
-          isChecked: false,
         },
       ],
     },
-  ]);
-
-  useEffect(() => {
-    //if local storage is empty set local storage to todoList
-    if (localStorage.getItem("todoList") === null) {
-      localStorage.setItem("todoList", JSON.stringify(todoList));
-    } else {
-      //if local storage is set use it
-      setTodoList(JSON.parse(localStorage.getItem("todoList") || "[]"));
-    }
-  }, []);
+  ];
 
   return (
     <div className="App">
@@ -86,8 +69,8 @@ function App(): ReactElement {
             <MainCard
               mainCardIndex={index}
               mainCard={mainCard}
-              todoList={todoList}
-              setTodoList={setTodoList}
+              mainIsClicked={mainIsClicked}
+              setMainIsClicked={setMainIsClicked}
               key={index}
             />
           );

@@ -2,62 +2,57 @@ import { ReactElement, useEffect, useState } from "react";
 import { ISideCard, ITodoItem } from "../Interfaces";
 import checked from "../img/CircleChecked.svg";
 import notchecked from "../img/Circle.svg";
+import MainCard from "./MainCard";
 
 //Seting prop types
 interface Props {
-  display: boolean;
   sideCard: ISideCard;
-  setTodoList: React.Dispatch<React.SetStateAction<ITodoItem[]>>;
-  todoList: ITodoItem[];
+  mainIsClicked: number | null;
   sideCardIndex: number;
   mainCardIndex: number;
 }
-function SideCard({ display, sideCard, setTodoList, todoList, sideCardIndex, mainCardIndex }: Props): ReactElement {
+function SideCard({
+  sideCard,
+  mainIsClicked,
+  mainCardIndex,
+}: Props): ReactElement {
   //states
   const [imgSrc, setImgSrc] = useState<string>("");
+  const [sideIsClicked, setSideIsClicked] = useState<boolean>(false);
 
-  //style depending on display state
-  const style = {
-    transform: !display ? "scaleY(0)" : "scaleY(1)",
-    margin: !display ? "0px" : "15px 0px 15px 0px",
-    maxHeight: !display ? "0px" : "150px",
-    opacity: !display ? "0" : "1",
-  };
   //changing checkbox image depending on sideCard.isChecked boolean
   useEffect(() => {
-    if (sideCard.isChecked) {
+    if (sideIsClicked) {
       setImgSrc(checked);
-    } else if (!sideCard.isChecked) {
+    } else if (!sideIsClicked) {
       setImgSrc(notchecked);
     }
-  }, [todoList]);
+  }, [mainIsClicked]);
 
   //changing sideCards isChecked boolean depending on if it's clicked, then storing it to localStorage
   const checkHandle = () => {
-    if (!sideCard.isChecked) {
-      let newTodoList = [...todoList];
-      newTodoList[mainCardIndex].sideCards[sideCardIndex].isChecked = true;
-      setTodoList(newTodoList);
-      localStorage.setItem("todoList", JSON.stringify(todoList));
-    } else if (sideCard.isChecked) {
-      let newTodoList = [...todoList];
-      newTodoList[mainCardIndex].sideCards[sideCardIndex].isChecked = false;
-      setTodoList(newTodoList);
-      localStorage.setItem("todoList", JSON.stringify(todoList));
+    if (!sideIsClicked) {
+      setSideIsClicked(true);
+      setImgSrc(checked);
+    } else if (sideIsClicked) {
+      setSideIsClicked(false);
+      setImgSrc(notchecked);
     }
   };
-  return (
-    <div style={style}>
-      <div className="side-card" style={style}>
-        <img src={imgSrc} alt="check-box" onClick={checkHandle} />
 
+  return (
+    <div>
+      <div
+        className={
+          mainIsClicked !== mainCardIndex ? "side-card-closed" : "side-card"
+        }
+      >
+        <img src={imgSrc} alt="check-box" onClick={checkHandle} />
         <p>
           {sideCard.name}
           {/* Displaying link if link is in the sideCard */}
-          {sideCard.link ? (
-            <a style={{ color: "#00A9A7", textDecoration: "none" }} href={`mailto:${sideCard.link}`}>
-              {" " + sideCard.link}
-            </a>
+          {"email coming soon" ? (
+            <a className="email-link" href={`mailto:${""}`}>{` ${""} `}</a>
           ) : (
             ""
           )}
