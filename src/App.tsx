@@ -1,7 +1,6 @@
 import MainCard from "./Components/MainCard";
 import { ReactElement, useState } from "react";
 import { ITodoItem } from "./Interfaces";
-import { ISideCard } from "./Interfaces";
 function App(): ReactElement {
   //States
   const [mainIsClicked, setMainIsClicked] = useState<number | null>(null);
@@ -70,7 +69,7 @@ function App(): ReactElement {
               mainCardIndex={index}
               mainCard={mainCard}
               mainIsClicked={mainIsClicked}
-              setMainIsClicked={setMainIsClicked}
+              setMainIsClicked={(id) => setMainIsClicked(id)}
               key={index}
             />
           );

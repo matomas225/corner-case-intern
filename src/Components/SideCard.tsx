@@ -17,26 +17,14 @@ function SideCard({
   mainCardIndex,
 }: Props): ReactElement {
   //states
-  const [imgSrc, setImgSrc] = useState<string>("");
   const [sideIsClicked, setSideIsClicked] = useState<boolean>(false);
-
-  //changing checkbox image depending on sideCard.isChecked boolean
-  useEffect(() => {
-    if (sideIsClicked) {
-      setImgSrc(checked);
-    } else if (!sideIsClicked) {
-      setImgSrc(notchecked);
-    }
-  }, [mainIsClicked]);
 
   //changing sideCards isChecked boolean depending on if it's clicked, then storing it to localStorage
   const checkHandle = () => {
     if (!sideIsClicked) {
       setSideIsClicked(true);
-      setImgSrc(checked);
     } else if (sideIsClicked) {
       setSideIsClicked(false);
-      setImgSrc(notchecked);
     }
   };
 
@@ -47,7 +35,11 @@ function SideCard({
           mainIsClicked !== mainCardIndex ? "side-card-closed" : "side-card"
         }
       >
-        <img src={imgSrc} alt="check-box" onClick={checkHandle} />
+        <img
+          src={sideIsClicked ? checked : notchecked}
+          alt="check-box"
+          onClick={checkHandle}
+        />
         <p>
           {sideCard.name}
           {/* Displaying link if link is in the sideCard */}

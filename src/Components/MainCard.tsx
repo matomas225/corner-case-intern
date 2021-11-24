@@ -5,7 +5,7 @@ import { ITodoItem } from "../Interfaces";
 //setting main card prop types
 interface Props {
   mainCardIndex: number;
-  mainCard: any;
+  mainCard: ITodoItem;
   mainIsClicked: number | null;
   setMainIsClicked: React.Dispatch<React.SetStateAction<number | null>>;
 }
