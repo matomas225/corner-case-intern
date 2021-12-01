@@ -1,0 +1,8 @@
+todo
+1 isChecked ismetam
+2 global state toggle ussidaro kiti kai atsidaro vienas
+3 is side item is checked susitvarkyti
+4 css optimizavimas
+
+
+<div className={!display ? "side-card-closed" : "side-card"}>
